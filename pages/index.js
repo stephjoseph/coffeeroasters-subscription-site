@@ -1,10 +1,12 @@
+import Header from '../components/home/Header';
+import Main from '../components/home/Main';
+
 const Home = () => {
   return (
-    <>
-      <h1 className='font-bold underline text-blue-200 font-h1'>
-        Hello world!
-      </h1>
-    </>
+    <div id='home' className='flex flex-col items-center w-full'>
+      <Header />
+      <Main />
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Nav = () => {
   return (
-    <nav className='py-8 flex justify-between items-center w-[87.2%]'>
+    <nav className='py-8 flex justify-between items-center w-[87.2%] mb-2'>
       <Link href='/'>
         <a>
           <Image

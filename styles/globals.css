@@ -5,7 +5,7 @@
 
 @layer base {
   .font-title-alternate {
-    @apply font-['Fraunces'] font-black text-[9.375rem] leading-[4.5rem] tracking-normal lowercase;
+    @apply font-['Fraunces'] bg-grey text-grey font-black text-[9.375rem] leading-[4.5rem] tracking-normal lowercase;
   }
 
   .font-h1 {
@@ -50,5 +50,32 @@
 
   .btn:disabled {
     @apply bg-[#E2DEDB];
+  }
+
+  .whychoose-bg {
+    background: url('/assets/home/mobile/image-whychooseus-bg.png') no-repeat
+      top center;
+    background-size: cover;
+  }
+
+  #home header {
+    background: url('/assets/home/mobile/image-hero-coffeepress.jpg') no-repeat
+      top center;
+    background-size: cover;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(254, 252, 247, 0.0001),
+      rgba(254, 252, 247, 1)
+    );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
   }
 }
