@@ -63,6 +63,11 @@
       top center;
     background-size: cover;
   }
+  #about header {
+    background: url('/assets/about/mobile/image-hero-whitecup.jpg') no-repeat
+      top center;
+    background-size: cover;
+  }
 }
 
 @layer utilities {
