@@ -13,7 +13,7 @@ const Header = () => {
           your door, at your schedule.
         </p>
       </div>
-      <Link href='/create'>
+      <Link href='/plan'>
         <a className='btn'>Create your plan</a>
       </Link>
     </header>

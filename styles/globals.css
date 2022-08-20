@@ -63,9 +63,16 @@
       top center;
     background-size: cover;
   }
+
   #about header {
     background: url('/assets/about/mobile/image-hero-whitecup.jpg') no-repeat
       top center;
+    background-size: cover;
+  }
+
+  #plan header {
+    background: url('/assets/plan/mobile/image-hero-blackcup.jpg') no-repeat top
+      center;
     background-size: cover;
   }
 }
@@ -82,5 +89,21 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+  }
+
+  .options {
+    @apply flex flex-col items-center gap-4 max-h-0 pt-0 overflow-hidden opacity-0 transition-[max-height,_padding,_opacity] duration-[0.3s,_0.3s,_0.3s] ease-out pointer-events-none;
+  }
+
+  .options.options-show {
+    @apply h-auto max-h-[9999px] opacity-100 pt-8 transition-[max-height,_padding,_opacity] duration-[2s,_0.3s,_0.3s] ease-in pointer-events-auto;
+  }
+
+  .option-selected {
+    @apply text-white bg-dark-cyan hover:bg-dark-cyan;
+  }
+
+  .option-not-selected {
+    @apply hover:bg-pale-orange text-dark-grey-blue;
   }
 }

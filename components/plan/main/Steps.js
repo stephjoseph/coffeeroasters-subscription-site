@@ -23,10 +23,12 @@ const steps = [
   },
 ];
 
-const HowItWorks = () => {
+const Steps = () => {
   return (
-    <section className='w-[87.2%] gap-20 flex flex-col items-center text-center'>
-      <h2 className='font-h2 text-2xl text-grey'>How it works</h2>
+    <section className='w-full rounded-[10px] gap-20 flex flex-col items-center text-center bg-[#2C343E] px-6 py-20'>
+      <h2 className='font-h2 text-2xl text-grey invisible absolute'>
+        How it works
+      </h2>
       <div className='flex flex-col items-center gap-[3.5rem]'>
         {steps.map((step) => {
           return (
@@ -39,11 +41,8 @@ const HowItWorks = () => {
           );
         })}
       </div>
-      <Link href='/plan'>
-        <a className='btn'>Create your plan</a>
-      </Link>
     </section>
   );
 };
 
-export default HowItWorks;
+export default Steps;

@@ -1,11 +1,14 @@
 import Layout from '../components/Layout';
+import CoffeeProvider from '../context/CoffeeContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <CoffeeProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </CoffeeProvider>
   );
 }
 
