@@ -99,6 +99,10 @@
     @apply h-auto max-h-[9999px] opacity-100 pt-8 transition-[max-height,_padding,_opacity] duration-[2s,_0.3s,_0.3s] ease-in pointer-events-auto;
   }
 
+  .options.options-hide {
+    @apply hidden pointer-events-none;
+  }
+
   .option-selected {
     @apply text-white bg-dark-cyan hover:bg-dark-cyan;
   }

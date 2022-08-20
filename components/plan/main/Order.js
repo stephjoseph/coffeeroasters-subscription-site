@@ -131,7 +131,11 @@ const Order = () => {
           return (
             <div key={id} className='flex flex-col items-center w-full'>
               <div
-                className='flex justify-between items-center w-full cursor-pointer'
+                className={`${
+                  i === 3 && state.preferences === 'Capsule'
+                    ? 'text-grey opacity-50 pointer-events-none'
+                    : ''
+                } flex justify-between items-center w-full cursor-pointer`}
                 onClick={() => toggleOpen(i)}
               >
                 <h3 className='font-h3 text-[1.5rem] leading-[1.75rem] w-[73.17%] text-grey'>
@@ -139,8 +143,11 @@ const Order = () => {
                 </h3>
                 <div
                   className={`${
-                    isOpen[i] ? 'rotate-180' : ''
-                  } w-6 h-6 flex items-center justify-center cursor-pointer transition-[transform] duration-300 ease-in`}
+                    isOpen[i] && !(state.preferences === 'Capsule' && i === 3)
+                      ? 'rotate-180'
+                      : ''
+                  }
+                  w-6 h-6 flex items-center justify-center cursor-pointer transition-[transform] duration-300 ease-in`}
                 >
                   <Image
                     width={18.19}
@@ -151,7 +158,11 @@ const Order = () => {
                 </div>
               </div>
               <div
-                className={`${!isOpen[i] ? 'options' : 'options options-show'}`}
+                className={`${
+                  !isOpen[i] || (state.preferences === 'Capsule' && i === 3)
+                    ? 'options'
+                    : 'options options-show'
+                }`}
               >
                 {options.map((option) => {
                   return (
@@ -192,9 +203,13 @@ const Order = () => {
             with a <span className='text-dark-cyan'>{orderSummary.bean}</span>{' '}
             type of bean.{' '}
             <span className='text-dark-cyan'>{orderSummary.quantity}</span>{' '}
-            ground ala{' '}
-            <span className='text-dark-cyan'>{orderSummary.grind}</span>, sent
-            to me{' '}
+            {state.preferences !== 'Capsule' && (
+              <>
+                ground ala{' '}
+                <span className='text-dark-cyan'>{orderSummary.grind}</span>
+              </>
+            )}
+            , sent to me{' '}
             <span className='text-dark-cyan'>{orderSummary.deliveries}</span>.”
           </p>
         </div>
