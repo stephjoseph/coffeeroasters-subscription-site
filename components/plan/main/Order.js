@@ -1,115 +1,20 @@
 import Image from 'next/image';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { CoffeeContext } from '../../../context/CoffeeContext';
-
-const plan = [
-  {
-    id: 0,
-    title: 'Preferences',
-    question: 'How do you drink your coffee?',
-    options: [
-      {
-        name: 'Capsule',
-        text: 'Compatible with Nespresso systems and similar brewers',
-      },
-      {
-        name: 'Filter',
-        text: 'For pour over or drip methods like Aeropress, Chemex, and V60',
-      },
-      {
-        name: 'Espresso',
-        text: 'Dense and finely ground beans for an intense, flavorful experience',
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: 'Bean',
-    question: 'What type of coffee?',
-    options: [
-      {
-        name: 'Single Origin',
-        text: 'Distinct, high quality coffee from a specific family-owned farm',
-      },
-      {
-        name: 'Decaf',
-        text: 'Just like regular coffee, except the caffeine has been removed',
-      },
-      {
-        name: 'Blended',
-        text: 'Combination of two or three dark roasted beans of organic coffees',
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Quantity',
-    question: 'How much would you like?',
-    options: [
-      {
-        name: '250g',
-        text: 'Perfect for the solo drinker. Yields about 12 delicious cups.',
-      },
-      {
-        name: '500g',
-        text: 'Perfect option for a couple. Yields about 40 delectable cups.',
-      },
-      {
-        name: '1000g',
-        text: 'Perfect for offices and events. Yields about 90 delightful cups.',
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Grind',
-    question: 'Want us to grind them?',
-    options: [
-      {
-        name: 'Wholebean',
-        text: 'Best choice if you cherish the full sensory experience',
-      },
-      {
-        name: 'Filter',
-        text: 'For drip or pour-over coffee methods such as V60 or Aeropress',
-      },
-      {
-        name: 'Cafetiére',
-        text: 'Course ground beans specially suited for french press coffee',
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Deliveries',
-    question: 'How often should we deliver?',
-    options: [
-      {
-        name: 'Every week',
-        text: '$7.20 per shipment. Includes free first-class shipping.',
-      },
-      {
-        name: 'Every 2 weeks',
-        text: '$9.60 per shipment. Includes free priority shipping.',
-      },
-      {
-        name: 'Every month',
-        text: '$12.00 per shipment. Includes free priority shipping.',
-      },
-    ],
-  },
-];
+import { ModalContext } from '../../../context/ModalContext';
 
 const Order = () => {
-  const [state, setState] = useContext(CoffeeContext);
+  const [state, setState, orderComplete, setOrderComplete] =
+    useContext(CoffeeContext);
 
-  const orderSummary = {
-    preferences: state.preferences ? state.preferences : '_____',
-    bean: state.bean ? state.bean : '_____',
-    quantity: state.quantity ? state.quantity : '_____',
-    grind: state.grind ? state.grind : '_____',
-    deliveries: state.deliveries ? state.deliveries : '_____',
-  };
+  const [isModalOpen, setIsModalOpen, price, setPrice] =
+    useContext(ModalContext);
+
+  const [pricing, setPricing] = useState({
+    perWeek: 0,
+    per2Weeks: 0,
+    perMonth: 0,
+  });
 
   const [isOpen, setIsOpen] = useState({
     0: false,
@@ -119,9 +24,237 @@ const Order = () => {
     4: false,
   });
 
+  const plan = [
+    {
+      id: 0,
+      title: 'Preferences',
+      question: 'How do you drink your coffee?',
+      options: [
+        {
+          name: 'Capsule',
+          text: 'Compatible with Nespresso systems and similar brewers',
+        },
+        {
+          name: 'Filter',
+          text: 'For pour over or drip methods like Aeropress, Chemex, and V60',
+        },
+        {
+          name: 'Espresso',
+          text: 'Dense and finely ground beans for an intense, flavorful experience',
+        },
+      ],
+    },
+    {
+      id: 1,
+      title: 'Bean',
+      question: 'What type of coffee?',
+      options: [
+        {
+          name: 'Single Origin',
+          text: 'Distinct, high quality coffee from a specific family-owned farm',
+        },
+        {
+          name: 'Decaf',
+          text: 'Just like regular coffee, except the caffeine has been removed',
+        },
+        {
+          name: 'Blended',
+          text: 'Combination of two or three dark roasted beans of organic coffees',
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: 'Quantity',
+      question: 'How much would you like?',
+      options: [
+        {
+          name: '250g',
+          text: 'Perfect for the solo drinker. Yields about 12 delicious cups.',
+        },
+        {
+          name: '500g',
+          text: 'Perfect option for a couple. Yields about 40 delectable cups.',
+        },
+        {
+          name: '1000g',
+          text: 'Perfect for offices and events. Yields about 90 delightful cups.',
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: 'Grind',
+      question: 'Want us to grind them?',
+      options: [
+        {
+          name: 'Wholebean',
+          text: 'Best choice if you cherish the full sensory experience',
+        },
+        {
+          name: 'Filter',
+          text: 'For drip or pour-over coffee methods such as V60 or Aeropress',
+        },
+        {
+          name: 'Cafetiére',
+          text: 'Course ground beans specially suited for french press coffee',
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: 'Deliveries',
+      question: 'How often should we deliver?',
+      options: [
+        {
+          name: 'Every week',
+          text: `$${pricing.perWeek.toFixed(
+            2
+          )} per shipment. Includes free first-class shipping.`,
+        },
+        {
+          name: 'Every 2 weeks',
+          text: `$${pricing.per2Weeks.toFixed(
+            2
+          )} per shipment. Includes free priority shipping.`,
+        },
+        {
+          name: 'Every month',
+          text: `$${pricing.perMonth.toFixed(
+            2
+          )} per shipment. Includes free priority shipping.`,
+        },
+      ],
+    },
+  ];
+
+  const orderSummary = {
+    preferences: state.preferences ? state.preferences : '_____',
+    bean: state.bean ? state.bean : '_____',
+    quantity: state.quantity ? state.quantity : '_____',
+    grind: state.grind ? state.grind : '_____',
+    deliveries: state.deliveries ? state.deliveries : '_____',
+  };
+
   const toggleOpen = (i) => {
     setIsOpen({ ...isOpen, [i]: !isOpen[i] });
   };
+
+  function pricePerShipment() {
+    switch (state.quantity) {
+      case '250g':
+        setPricing({
+          perWeek: 7.2,
+          per2Weeks: 9.6,
+          perMonth: 12.0,
+        });
+        break;
+      case '500g':
+        setPricing({
+          perWeek: 13.0,
+          per2Weeks: 17.5,
+          perMonth: 22.0,
+        });
+        break;
+      case '1000g':
+        setPricing({
+          perWeek: 22.0,
+          per2Weeks: 32.0,
+          perMonth: 42.0,
+        });
+        break;
+      default:
+        setPricing({
+          perWeek: 0,
+          per2Weeks: 0,
+          perMonth: 0,
+        });
+    }
+  }
+
+  function checkProperties(_obj) {
+    const allChecked =
+      state.preferences !== 'Capsule' &&
+      Object.values(state).filter((item) => item !== '').length === 5;
+    const allCheckedExceptGrind =
+      state.preferences === 'Capsule' &&
+      Object.values(state).filter((item) => item !== '').length === 4;
+
+    if (allCheckedExceptGrind) {
+      setOrderComplete(true);
+    } else if (allChecked) {
+      setOrderComplete(true);
+    } else {
+      setOrderComplete(false);
+    }
+  }
+
+  function computePrice() {
+    if (
+      orderComplete &&
+      state.quantity === '250g' &&
+      state.deliveries === 'Every week'
+    ) {
+      setPrice(7.2);
+    } else if (
+      orderComplete &&
+      state.quantity === '250g' &&
+      state.deliveries === 'Every 2 weeks'
+    ) {
+      setPrice(9.6);
+    } else if (
+      orderComplete &&
+      state.quantity === '250g' &&
+      state.deliveries === 'Every month'
+    ) {
+      setPrice(12.0);
+    } else if (
+      orderComplete &&
+      state.quantity === '500g' &&
+      state.deliveries === 'Every week'
+    ) {
+      setPrice(13.0);
+    } else if (
+      orderComplete &&
+      state.quantity === '500g' &&
+      state.deliveries === 'Every 2 weeks'
+    ) {
+      setPrice(17.5);
+    } else if (
+      orderComplete &&
+      state.quantity === '500g' &&
+      state.deliveries === 'Every month'
+    ) {
+      setPrice(22.0);
+    } else if (
+      orderComplete &&
+      state.quantity === '1000g' &&
+      state.deliveries === 'Every week'
+    ) {
+      setPrice(22.0);
+    } else if (
+      orderComplete &&
+      state.quantity === '1000g' &&
+      state.deliveries === 'Every 2 weeks'
+    ) {
+      setPrice(32.0);
+    } else if (
+      orderComplete &&
+      state.quantity === '1000g' &&
+      state.deliveries === 'Every month'
+    ) {
+      setPrice(42.0);
+    }
+  }
+
+  useEffect(() => {
+    checkProperties(state);
+    pricePerShipment();
+  }, [state]);
+
+  useEffect(() => {
+    computePrice();
+  }, [orderComplete, state]);
 
   return (
     <>
@@ -133,7 +266,7 @@ const Order = () => {
               <div
                 className={`${
                   i === 3 && state.preferences === 'Capsule'
-                    ? 'text-grey opacity-50 pointer-events-none'
+                    ? 'opacity-50 pointer-events-none'
                     : ''
                 } flex justify-between items-center w-full cursor-pointer`}
                 onClick={() => toggleOpen(i)}
@@ -176,10 +309,10 @@ const Order = () => {
                         flex-col gap-2 bg-[#F4F1EB] p-6 rounded-lg  cursor-pointer z-10 
                         `}
                       onClick={() => {
-                        setState({
-                          ...state,
+                        setState((prevState) => ({
+                          ...prevState,
                           [title.toLowerCase()]: option.name,
-                        });
+                        }));
                       }}
                     >
                       <h4 className='font-h4 text-2xl '>{option.name}</h4>
@@ -213,7 +346,15 @@ const Order = () => {
             <span className='text-dark-cyan'>{orderSummary.deliveries}</span>.”
           </p>
         </div>
-        <button type='button' className='btn'>
+        <button
+          type='button'
+          className={`${
+            orderComplete ? 'btn' : 'btn opacity-50 pointer-events-none'
+          }`}
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
           Create my plan!
         </button>
       </section>

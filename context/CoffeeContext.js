@@ -11,8 +11,12 @@ const CoffeeProvider = ({ children }) => {
     deliveries: '',
   });
 
+  const [orderComplete, setOrderComplete] = useState(false);
+
   return (
-    <CoffeeContext.Provider value={[state, setState]}>
+    <CoffeeContext.Provider
+      value={[state, setState, orderComplete, setOrderComplete]}
+    >
       {children}
     </CoffeeContext.Provider>
   );
