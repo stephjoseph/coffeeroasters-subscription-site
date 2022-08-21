@@ -1,8 +1,20 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Footer from './Footer';
-import Nav from './Nav';
+import MobileNav from './MobileNav';
+import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
+  const [width, setWidth] = useState(0);
+
+  const updateSize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.onresize = updateSize;
+  }, []);
+
   return (
     <>
       <Head>
@@ -13,7 +25,8 @@ const Layout = ({ children }) => {
         />
       </Head>
       <div className='grid place-items-center bg-light-cream'>
-        <Nav />
+        {width < 768 && <MobileNav />}
+        {width >= 768 && <Navbar />}
         {children}
         <Footer />
       </div>

@@ -46,20 +46,20 @@ const Modal = () => {
 
   return (
     <div
-      className='fixed h-screen bg-black/50 w-full top-0 flex flex-col items-center z-50'
+      className='fixed top-0 z-50 flex h-screen w-full flex-col items-center bg-black/50'
       onClick={() => setIsModalOpen(false)}
     >
       <div
-        className='w-[87.2%] flex flex-col items-center bg-white mt-9 rounded-lg'
+        className='mt-9 flex w-[87.2%] flex-col items-center rounded-lg bg-white'
         onClick={(e) => e.stopPropagation()}
       >
-        <div className='bg-dark-grey-blue w-full rounded-t-lg'>
-          <h2 className='px-6 py-[1.75rem] w-full font-h2 text-[1.75rem] leading-[2rem] text-white'>
+        <div className='w-full rounded-t-lg bg-dark-grey-blue'>
+          <h2 className='font-h2 w-full px-6 py-[1.75rem] text-[1.75rem] leading-[2rem] text-white'>
             Order Summary
           </h2>
         </div>
-        <div className='flex items-center w-full flex-col pt-10 px-6 pb-6 gap-6'>
-          <div className='flex flex-col items-center w-full'>
+        <div className='flex w-full flex-col items-center gap-6 px-6 pt-10 pb-6'>
+          <div className='flex w-full flex-col items-center'>
             <p className='font-h2 text-[1.5rem] leading-10 text-grey'>
               “I drink my coffee as{' '}
               <span className='text-dark-cyan'>{state.preferences}</span>, with
