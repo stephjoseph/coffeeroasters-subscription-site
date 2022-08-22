@@ -11,7 +11,7 @@ const Nav = () => {
   }
 
   return (
-    <nav className='sticky top-0 z-50 mb-2 flex w-[87.2%] flex-col items-center bg-light-cream py-8 transition-transform duration-300 ease-in'>
+    <nav className='sticky top-0 z-50 mb-2 flex w-screen flex-col items-center bg-light-cream px-6 py-8 transition-transform duration-300 ease-in'>
       <div className='relative flex w-full items-center justify-between'>
         <Link href='/'>
           <a>
@@ -58,13 +58,26 @@ const Nav = () => {
         } fixed top-[5.5rem] flex h-screen w-full flex-col items-center gap-8 bg-gradient-to-b from-light-cream via-light-cream to-white/50 pt-10 transition-opacity duration-300 ease-in`}
       >
         <Link href='/'>
-          <a className='font-mobile-nav text-dark-grey-blue'>Home</a>
+          <a
+            className='font-mobile-nav text-dark-grey-blue'
+            onClick={handleClick}
+          >
+            Home
+          </a>
         </Link>
         <Link href='/about'>
-          <a className='font-mobile-nav text-dark-grey-blue'>About Us</a>
+          <a
+            className='font-mobile-nav text-dark-grey-blue'
+            onClick={handleClick}
+          >
+            About Us
+          </a>
         </Link>
         <Link href='/plan'>
-          <a className='font-mobile-nav text-dark-grey-blue'>
+          <a
+            className='font-mobile-nav text-dark-grey-blue'
+            onClick={handleClick}
+          >
             Create Your Plan
           </a>
         </Link>

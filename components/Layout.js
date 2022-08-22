@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
   };
 
   useEffect(() => {
+    setWidth(window.innerWidth);
     window.onresize = updateSize;
   }, []);
 
@@ -25,8 +26,8 @@ const Layout = ({ children }) => {
         />
       </Head>
       <div className='grid place-items-center bg-light-cream'>
-        {width < 768 && <MobileNav />}
         {width >= 768 && <Navbar />}
+        {width < 768 && <MobileNav />}
         {children}
         <Footer />
       </div>

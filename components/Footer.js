@@ -3,12 +3,12 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className='w-[87.2%] bg-[#2C343E] flex flex-col items-center mb-[4.5rem] py-[3.5rem] gap-12'>
+    <footer className='mb-[4.5rem] flex w-[87.2%] flex-col items-center gap-12 bg-[#2C343E] py-[3.5rem] md:w-[89.58%] md:gap-0 md:py-[3.375rem]'>
       <Link href='/'>
-        <a>
+        <a className='relative h-[1.438rem] w-[13.563rem] md:mb-8 md:h-[1.625rem] md:w-[14.75rem]'>
           <Image
-            width={217}
-            height={23}
+            layout='fill'
+            objectFit='cover'
             src='/assets/shared/desktop/logo-white.svg'
             alt='logo'
           />
@@ -16,7 +16,7 @@ const Footer = () => {
       </Link>
       <nav
         id='footer-nav'
-        className='flex flex-col items-center gap-6 font-footer'
+        className='font-footer flex flex-col items-center gap-6 md:mb-16 md:flex-row md:gap-8'
       >
         <Link href='/'>
           <a>Home</a>
