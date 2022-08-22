@@ -49,7 +49,7 @@ const HowItWorks = () => {
           alt=''
         />
       </div>
-      <div className='flex flex-col items-center gap-[3.5rem] md:mb-[2.75rem] md:flex-row md:gap-[0.625rem]'>
+      <div className='flex flex-col items-center gap-[3.5rem] md:mb-[2.75rem] md:flex-row md:items-start md:gap-[0.625rem]'>
         {steps.map((step) => {
           return (
             <Step
