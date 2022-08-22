@@ -89,6 +89,12 @@
       background-size: cover;
     }
 
+    #plan header {
+      background: url('/assets/plan/tablet/image-hero-blackcup.jpg') no-repeat
+        center center;
+      background-size: cover;
+    }
+
     .whychoose-bg {
       background-image: none;
     }
@@ -110,11 +116,11 @@
   }
 
   .options {
-    @apply pointer-events-none flex max-h-0 flex-col items-center gap-4 overflow-hidden pt-0 opacity-0 transition-[max-height,_padding,_opacity] duration-[0.3s,_0.3s,_0.3s] ease-out;
+    @apply pointer-events-none flex max-h-0 flex-col items-center gap-4 overflow-hidden pt-0 opacity-0 transition-[max-height,_padding,_opacity] duration-[0.3s,_0.3s,_0.3s] ease-out md:flex-row md:items-start md:gap-[0.625rem];
   }
 
   .options.options-show {
-    @apply pointer-events-auto h-auto max-h-[9999px] pt-8 opacity-100 transition-[max-height,_padding,_opacity] duration-[2s,_0.3s,_0.3s] ease-in;
+    @apply pointer-events-auto h-auto max-h-[9999px] pt-8 opacity-100 transition-[max-height,_padding,_opacity] duration-[2s,_0.3s,_0.3s] ease-in md:pt-10;
   }
 
   .options.options-hide {

@@ -178,7 +178,7 @@ const Order = () => {
       Object.values(state).filter((item) => item !== '').length === 5;
     const allCheckedExceptGrind =
       state.preferences === 'Capsule' &&
-      Object.values(state).filter((item) => item !== '').length === 4;
+      Object.values(state).filter((item) => item !== '').length >= 4;
 
     if (allCheckedExceptGrind) {
       setOrderComplete(true);
@@ -258,20 +258,20 @@ const Order = () => {
 
   return (
     <>
-      <section className='w-[87.47%] flex flex-col items-center gap-24'>
+      <section className='flex w-[87.47%] flex-col items-center gap-24 md:w-[89.71%] md:gap-[6.25rem]'>
         <h2 className='invisible absolute'>Choose your plan</h2>
         {plan.map(({ id, question, options, title }, i) => {
           return (
-            <div key={id} className='flex flex-col items-center w-full'>
+            <div key={id} className='flex w-full flex-col items-center'>
               <div
                 className={`${
                   i === 3 && state.preferences === 'Capsule'
-                    ? 'opacity-50 pointer-events-none'
+                    ? 'pointer-events-none opacity-50'
                     : ''
-                } flex justify-between items-center w-full cursor-pointer`}
+                } flex w-full cursor-pointer items-center justify-between`}
                 onClick={() => toggleOpen(i)}
               >
-                <h3 className='font-h3 text-[1.5rem] leading-[1.75rem] w-[73.17%] text-grey'>
+                <h3 className='font-h3 w-[73.17%] text-[1.5rem] leading-[1.75rem] text-grey md:w-max md:text-[2rem] md:leading-[3rem]'>
                   {question}
                 </h3>
                 <div
@@ -280,7 +280,7 @@ const Order = () => {
                       ? 'rotate-180'
                       : ''
                   }
-                  w-6 h-6 flex items-center justify-center cursor-pointer transition-[transform] duration-300 ease-in`}
+                  flex h-6 w-6 cursor-pointer items-center justify-center transition-[transform] duration-300 ease-in`}
                 >
                   <Image
                     width={18.19}
@@ -306,7 +306,7 @@ const Order = () => {
                           ? 'option-selected'
                           : 'option-not-selected'
                       }
-                        flex-col gap-2 bg-[#F4F1EB] p-6 rounded-lg  cursor-pointer z-10 
+                        z-10 cursor-pointer flex-col gap-2 rounded-lg  bg-[#F4F1EB] p-6 md:w-[32.36%] md:gap-6  md:pt-8 md:pb-[5.25rem] 
                         `}
                       onClick={() => {
                         setState((prevState) => ({
@@ -325,8 +325,8 @@ const Order = () => {
           );
         })}
       </section>
-      <section className='flex flex-col items-center gap-[3.5rem] w-[87.47%]'>
-        <div className='flex flex-col gap-8 bg-[#2C343E] px-6 py-8 rounded-[10px]'>
+      <section className='flex w-[87.47%] flex-col items-center gap-[3.5rem] md:w-[89.71%] md:gap-10'>
+        <div className='flex flex-col gap-8 rounded-[10px] bg-[#2C343E] px-6 py-8 md:gap-2 md:py-[1.688rem] md:px-[2.75rem]'>
           <h2 className='font-body uppercase text-white/[0.5037]'>
             Order Summary
           </h2>
@@ -349,7 +349,7 @@ const Order = () => {
         <button
           type='button'
           className={`${
-            orderComplete ? 'btn' : 'btn opacity-50 pointer-events-none'
+            orderComplete ? 'btn' : 'btn pointer-events-none opacity-50'
           }`}
           onClick={() => {
             setIsModalOpen(true);
