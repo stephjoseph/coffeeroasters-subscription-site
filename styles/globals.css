@@ -75,6 +75,17 @@
       center;
     background-size: cover;
   }
+
+  @media (min-width: 768px) {
+    #home header {
+      background: url('/assets/home/tablet/image-hero-coffeepress.jpg')
+        no-repeat top center;
+      background-size: cover;
+    }
+    .whychoose-bg {
+      background-image: none;
+    }
+  }
 }
 
 @layer utilities {

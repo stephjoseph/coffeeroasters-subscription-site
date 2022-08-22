@@ -32,8 +32,8 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className='flex flex-col items-center w-[87.2%] text-center'>
-      <div className='flex flex-col items-center gap-6 bg-[#2C343E] rounded-[10px] px-6 pt-16 pb-[41.313rem] relative overflow-clip '>
+    <section className='flex w-[87.2%] flex-col items-center text-center md:w-[89.71%]'>
+      <div className='relative flex flex-col items-center gap-6 overflow-clip rounded-[10px] bg-[#2C343E] px-6 pt-16 pb-[41.313rem] md:px-[4.5rem] md:pb-[23rem] md:pt-14 '>
         <h2 className='font-h2 text-[1.75rem] leading-[1.75rem] text-light-cream'>
           Why choose us?
         </h2>
@@ -42,9 +42,9 @@ const WhyChooseUs = () => {
           featured in our range. This means working closely with the best coffee
           growers to give you a more impactful experience on every level.
         </p>
-        <div className='absolute md:hidden whychoose-bg h-[40.688rem] top-[269px] w-full opacity-[0.15]'></div>
+        <div className='whychoose-bg absolute top-[269px] h-[40.688rem] w-full opacity-[0.15] md:hidden'></div>
       </div>
-      <div className='flex flex-col items-center gap-6 z-10 -mt-[37.313rem]'>
+      <div className='z-10 -mt-[37.313rem] flex w-full flex-col items-center gap-6 md:-mt-[18.625rem]'>
         {features.map((feature) => {
           return (
             <Feature

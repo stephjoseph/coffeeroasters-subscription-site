@@ -4,7 +4,7 @@ import WhyChooseUs from './main/WhyChooseUs';
 
 const Main = () => {
   return (
-    <main className='flex flex-col items-center w-full gap-[7.5rem] mb-[7.5rem]'>
+    <main className='mb-[7.5rem] flex w-full flex-col items-center gap-[7.5rem] md:mb-[9rem] md:gap-[9rem]'>
       <OurCollection />
       <WhyChooseUs />
       <HowItWorks />

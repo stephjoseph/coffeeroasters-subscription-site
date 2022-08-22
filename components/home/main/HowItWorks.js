@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Step from './Step';
 
 const steps = [
@@ -25,9 +26,30 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className='w-[87.2%] gap-20 flex flex-col items-center text-center'>
-      <h2 className='font-h2 text-2xl text-grey'>How it works</h2>
-      <div className='flex flex-col items-center gap-[3.5rem]'>
+    <section className='flex w-[87.2%] flex-col items-center gap-20 text-center md:w-[89.71%] md:items-start md:gap-0 md:text-left'>
+      <h2 className='font-h2 text-2xl text-grey md:mb-10'>How it works</h2>
+      <div className='relative mb-12 hidden w-[72.13%] items-center justify-between md:flex'>
+        <div className='absolute h-[0.125rem] w-full bg-pale-orange'></div>
+        <Image
+          width={31}
+          height={31}
+          src='/assets/home/desktop/oval.svg'
+          alt=''
+        />
+        <Image
+          width={31}
+          height={31}
+          src='/assets/home/desktop/oval.svg'
+          alt=''
+        />
+        <Image
+          width={31}
+          height={31}
+          src='/assets/home/desktop/oval.svg'
+          alt=''
+        />
+      </div>
+      <div className='flex flex-col items-center gap-[3.5rem] md:mb-[2.75rem] md:flex-row md:gap-[0.625rem]'>
         {steps.map((step) => {
           return (
             <Step

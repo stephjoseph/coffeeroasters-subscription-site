@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className='mb-[4.5rem] flex w-[87.2%] flex-col items-center gap-12 bg-[#2C343E] py-[3.5rem] md:w-[89.58%] md:gap-0 md:py-[3.375rem]'>
+    <footer className='mb-[4.5rem] flex w-[87.2%] flex-col items-center gap-12 bg-[#2C343E] py-[3.5rem] md:w-[89.71%] md:gap-0 md:py-[3.375rem]'>
       <Link href='/'>
         <a className='relative h-[1.438rem] w-[13.563rem] md:mb-8 md:h-[1.625rem] md:w-[14.75rem]'>
           <Image
