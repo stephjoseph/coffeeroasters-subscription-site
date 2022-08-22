@@ -38,9 +38,9 @@ const locations = [
 
 const Headquarters = () => {
   return (
-    <section className='flex flex-col items-center w-[87.2%] gap-[4.5rem]'>
+    <section className='flex w-[87.2%] flex-col items-center gap-[4.5rem] md:w-[89.71%] md:items-start'>
       <h2 className='font-h2 text-2xl text-grey'>Our headquarters</h2>
-      <div className='flex flex-col items-center w-full gap-20'>
+      <div className='flex w-full flex-col items-center gap-20 md:flex-row md:items-start md:gap-[0.625rem]'>
         {locations.map((location) => {
           return <Location key={location.country} {...location} />;
         })}

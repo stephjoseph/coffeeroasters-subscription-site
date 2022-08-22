@@ -82,6 +82,13 @@
         no-repeat top center;
       background-size: cover;
     }
+
+    #about header {
+      background: url('/assets/about/tablet/image-hero-whitecup.jpg') no-repeat
+        center center;
+      background-size: cover;
+    }
+
     .whychoose-bg {
       background-image: none;
     }

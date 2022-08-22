@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 const Commitment = () => {
   return (
-    <section className='flex flex-col items-center w-[87.2%] gap-12'>
-      <div className='rounded-lg overflow-hidden h-[25rem] w-full relative'>
+    <section className='flex w-[87.2%] flex-col items-center gap-12 md:w-[89.71%] md:flex-row md:gap-[4.313rem]'>
+      <div className='relative h-[25rem] w-full overflow-hidden rounded-lg md:hidden'>
         <Image
           layout='fill'
           objectFit='cover'
@@ -12,7 +12,16 @@ const Commitment = () => {
           src='/assets/about/mobile/image-commitment.jpg'
         />
       </div>
-      <div className='flex flex-col items-center text-center gap-[1.875rem]'>
+      <div className='relative hidden h-[29.375rem] w-[40.78%] overflow-hidden rounded-lg md:block xl:hidden'>
+        <Image
+          layout='fill'
+          objectFit='cover'
+          objectPosition='top center'
+          alt='barista doing latte art'
+          src='/assets/about/tablet/image-commitment.jpg'
+        />
+      </div>
+      <div className='flex flex-col items-center gap-[1.875rem] text-center md:w-[49.20%] md:items-start md:text-left'>
         <h2 className='font-h2 text-[2rem] leading-[3rem] text-dark-grey-blue'>
           Our Commitment
         </h2>
