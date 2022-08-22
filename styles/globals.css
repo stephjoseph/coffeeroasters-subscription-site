@@ -40,6 +40,10 @@
     @apply font-['Barlow'] text-[0.75rem] font-bold uppercase leading-[0.938rem] tracking-[0.92px] text-grey;
   }
 
+  .font-checkout {
+    @apply font-['Fraunces'] text-[2rem] font-black leading-9 text-dark-grey-blue;
+  }
+
   .btn {
     @apply flex h-[3.5rem] w-[13.563rem] cursor-pointer items-center justify-center rounded-[0.375rem] bg-dark-cyan font-['Fraunces'] text-[1.125rem] leading-[1.563rem] tracking-normal text-light-cream;
   }
