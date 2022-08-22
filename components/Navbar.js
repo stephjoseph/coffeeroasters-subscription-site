@@ -3,12 +3,12 @@ import Image from 'next/image';
 
 const Navbar = () => {
   return (
-    <nav className='flex w-screen items-center justify-between p-10'>
+    <nav className='flex w-screen items-center justify-between p-10 xl:px-20 xl:py-[2.75rem]'>
       <Link href='/'>
-        <a>
+        <a className='relative h-[1.625rem] w-[14.75rem] xl:h-6 xl:w-[12.688rem]'>
           <Image
-            width={236}
-            height={26}
+            layout='fill'
+            objectFit='contain'
             src='/assets/shared/desktop/logo.svg'
             alt='Logo'
           />

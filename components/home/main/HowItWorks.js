@@ -26,9 +26,11 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className='flex w-[87.2%] flex-col items-center gap-20 text-center md:w-[89.71%] md:items-start md:gap-0 md:text-left'>
-      <h2 className='font-h2 text-2xl text-grey md:mb-10'>How it works</h2>
-      <div className='relative mb-12 hidden w-[72.13%] items-center justify-between md:flex'>
+    <section className='flex w-[87.2%] flex-col items-center gap-20 text-center md:w-[89.71%] md:items-start md:gap-0 md:text-left xl:w-[77.08%] xl:items-start'>
+      <h2 className='font-h2 text-2xl text-grey md:mb-10 xl:mb-20'>
+        How it works
+      </h2>
+      <div className='relative mb-12 hidden w-[72.13%] items-center justify-between md:flex xl:mb-[4.188rem] xl:w-[71.26%]'>
         <div className='absolute h-[0.125rem] w-full bg-pale-orange'></div>
         <Image
           width={31}
@@ -49,7 +51,7 @@ const HowItWorks = () => {
           alt=''
         />
       </div>
-      <div className='flex flex-col items-center gap-[3.5rem] md:mb-[2.75rem] md:flex-row md:items-start md:gap-[0.625rem]'>
+      <div className='flex flex-col items-center gap-[3.5rem] md:mb-[2.75rem] md:flex-row md:items-start md:gap-[0.625rem] xl:mb-16 xl:w-[94.14%] xl:gap-[5.938rem]'>
         {steps.map((step) => {
           return (
             <Step

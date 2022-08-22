@@ -33,11 +33,11 @@ const coffeeCollection = [
 
 const OurCollection = () => {
   return (
-    <section className='flex w-[87.2%] flex-col items-center gap-[0.813rem] md:w-[89.71%] md:gap-[0]'>
-      <h2 className='font-title-alternate gradient-text text-[2.5rem] leading-[4.5rem] text-grey md:text-[6rem] md:leading-[4.5rem]'>
+    <section className='flex w-[87.2%] flex-col items-center gap-[0.813rem] md:w-[89.71%] md:gap-[0] xl:w-[77.08%]'>
+      <h2 className='font-title-alternate xl:font-title-alternate gradient-text text-[2.5rem] leading-[4.5rem] text-grey md:text-[6rem] md:leading-[4.5rem]'>
         Our Collection
       </h2>
-      <div className='flex flex-col items-center gap-12 md:-mt-[2rem] md:gap-8'>
+      <div className='flex flex-col items-center gap-12 md:-mt-[2rem] md:gap-8 xl:flex-row xl:items-start xl:gap-[1.875rem]'>
         {coffeeCollection.map((coffee) => {
           return (
             <Coffee

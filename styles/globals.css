@@ -103,6 +103,14 @@
       background-image: none;
     }
   }
+
+  @media (min-width: 1440px) {
+    #home header {
+      background: url('/assets/home/desktop/image-hero-coffeepress.jpg')
+        no-repeat bottom center;
+      background-size: cover;
+    }
+  }
 }
 
 @layer utilities {
