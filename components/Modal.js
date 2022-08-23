@@ -30,7 +30,6 @@ const Modal = () => {
   const [pricePerMonth, setPricePerMonth] = useState('0.00');
 
   useEffect(() => {
-    console.log(price);
     const closeModal = (e) => {
       if (e.keyCode === 27) {
         setIsModalOpen(false);

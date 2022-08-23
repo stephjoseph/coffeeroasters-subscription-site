@@ -13,9 +13,34 @@ const CoffeeProvider = ({ children }) => {
 
   const [orderComplete, setOrderComplete] = useState(false);
 
+  const [isOpen, setIsOpen] = useState({
+    0: true,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+  });
+
+  const [disabledQuestion, setDisabledQuestion] = useState({
+    0: false,
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+  });
+
   return (
     <CoffeeContext.Provider
-      value={[state, setState, orderComplete, setOrderComplete]}
+      value={[
+        state,
+        setState,
+        orderComplete,
+        setOrderComplete,
+        isOpen,
+        setIsOpen,
+        disabledQuestion,
+        setDisabledQuestion,
+      ]}
     >
       {children}
     </CoffeeContext.Provider>

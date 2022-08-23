@@ -4,8 +4,16 @@ import { CoffeeContext } from '../../../context/CoffeeContext';
 import { ModalContext } from '../../../context/ModalContext';
 
 const Order = () => {
-  const [state, setState, orderComplete, setOrderComplete] =
-    useContext(CoffeeContext);
+  const [
+    state,
+    setState,
+    orderComplete,
+    setOrderComplete,
+    isOpen,
+    setIsOpen,
+    disabledQuestion,
+    setDisabledQuestion,
+  ] = useContext(CoffeeContext);
 
   const [isModalOpen, setIsModalOpen, price, setPrice] =
     useContext(ModalContext);
@@ -16,23 +24,7 @@ const Order = () => {
     perMonth: 0,
   });
 
-  const [isOpen, setIsOpen] = useState({
-    0: true,
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-  });
-
   const [current, setCurrent] = useState('Preferences');
-
-  const [disabledQuestion, setDisabledQuestion] = useState({
-    0: false,
-    1: true,
-    2: true,
-    3: true,
-    4: true,
-  });
 
   const plan = [
     {
@@ -142,6 +134,7 @@ const Order = () => {
   const orderSummaryRef = useRef(null);
 
   const scrollToQuestion = (current) => {
+    console.log(current);
     switch (current) {
       case 'Bean Type':
         questionsRef[1].current.scrollIntoView({ behavior: 'smooth' });
@@ -280,10 +273,8 @@ const Order = () => {
   }
 
   function scrollToSummary() {
-    console.log(orderComplete);
     if (orderComplete) {
       orderSummaryRef.current.scrollIntoView({ behavior: 'smooth' });
-      console.log('scroll ran');
     }
   }
 
@@ -331,17 +322,29 @@ const Order = () => {
         setDisabledQuestion((prevState) => ({ ...prevState, 1: false }));
         break;
       case 'Quantity':
-        setDisabledQuestion((prevState) => ({ ...prevState, 2: false }));
+        setDisabledQuestion((prevState) => ({
+          ...prevState,
+          1: false,
+          2: false,
+        }));
         break;
       case 'Grind Option':
         setDisabledQuestion((prevState) => ({
           ...prevState,
+          1: false,
+          2: false,
           3: false,
           4: true,
         }));
         break;
       case 'Deliveries':
-        setDisabledQuestion((prevState) => ({ ...prevState, 4: false }));
+        setDisabledQuestion((prevState) => ({
+          ...prevState,
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+        }));
         break;
       default:
         setDisabledQuestion({ 0: false, 1: true, 2: true, 3: true, 4: true });
@@ -354,6 +357,16 @@ const Order = () => {
     if (current === 'Deliveries' && state.preferences === 'Capsule') {
       setDisabledQuestion((prevState) => ({ ...prevState, 3: true }));
     }
+
+    if (current === 'Deliveries' && orderComplete) {
+      setDisabledQuestion({
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+      });
+    }
   }
 
   function openCurrent() {
@@ -362,29 +375,60 @@ const Order = () => {
         setIsOpen((prevState) => ({ ...prevState, 1: true }));
         break;
       case 'Quantity':
-        setIsOpen((prevState) => ({ ...prevState, 2: true }));
+        setIsOpen((prevState) => ({ ...prevState, 1: true, 2: true }));
         break;
       case 'Grind Option':
-        setIsOpen((prevState) => ({ ...prevState, 3: true }));
+        setIsOpen((prevState) => ({ ...prevState, 1: true, 2: true, 3: true }));
         break;
       case 'Deliveries':
-        setIsOpen((prevState) => ({ ...prevState, 4: true }));
+        setIsOpen((prevState) => ({
+          ...prevState,
+          1: true,
+          2: true,
+          3: true,
+          4: true,
+        }));
         break;
       default:
-        setIsOpen((prevState) => ({
+        setIsOpen({
           0: true,
           1: false,
           2: false,
           3: false,
           4: false,
-        }));
+        });
+    }
+
+    if (orderComplete) {
+      setIsOpen({
+        0: true,
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+      });
+    }
+  }
+
+  function handleClick(e) {
+    if (e.target.innerHTML.includes('Preferences')) {
+      questionsRef[0].current.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.target.innerHTML.includes('Bean Type')) {
+      questionsRef[1].current.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.target.innerHTML.includes('Quantity')) {
+      questionsRef[2].current.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.target.innerHTML.includes('Grind Option')) {
+      questionsRef[3].current.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.target.innerHTML.includes('Deliveries')) {
+      questionsRef[4].current.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      null;
     }
   }
 
   useEffect(() => {
     checkCurrent();
     checkProperties(state);
-
     pricePerShipment();
   }, [state]);
 
@@ -413,7 +457,8 @@ const Order = () => {
                 current === 'Preferences'
                   ? 'text-dark-grey-blue'
                   : 'text-dark-grey-blue/40'
-              } font-mobile-nav group flex cursor-pointer items-center gap-6 border-b border-grey/25 pb-6 hover:text-dark-grey-blue/60`}
+              }  font-mobile-nav group flex cursor-pointer items-center gap-6 border-b border-grey/25 pb-6 hover:text-dark-grey-blue/60`}
+              onClick={(e) => handleClick(e)}
             >
               <div
                 className={`${
@@ -431,7 +476,10 @@ const Order = () => {
                 current === 'Bean Type'
                   ? 'text-dark-grey-blue'
                   : 'text-dark-grey-blue/40'
+              } ${
+                disabledQuestion[1] ? 'pointer-events-none' : ''
               } font-mobile-nav group flex cursor-pointer items-center gap-6 border-b border-grey/25 pb-6 hover:text-dark-grey-blue/60`}
+              onClick={(e) => handleClick(e)}
             >
               <div
                 className={`${
@@ -449,7 +497,10 @@ const Order = () => {
                 current === 'Quantity'
                   ? 'text-dark-grey-blue'
                   : 'text-dark-grey-blue/40'
+              } ${
+                disabledQuestion[2] ? 'pointer-events-none' : ''
               } font-mobile-nav group flex cursor-pointer items-center gap-6 border-b border-grey/25 pb-6 hover:text-dark-grey-blue/60`}
+              onClick={(e) => handleClick(e)}
             >
               <div
                 className={`${
@@ -467,7 +518,10 @@ const Order = () => {
                 current === 'Grind Option'
                   ? 'text-dark-grey-blue'
                   : 'text-dark-grey-blue/40'
+              } ${
+                disabledQuestion[3] ? 'pointer-events-none' : ''
               } font-mobile-nav group flex cursor-pointer items-center gap-6 border-b border-grey/25 pb-6 hover:text-dark-grey-blue/60`}
+              onClick={(e) => handleClick(e)}
             >
               <div
                 className={`${
@@ -485,7 +539,10 @@ const Order = () => {
                 current === 'Deliveries'
                   ? 'text-dark-grey-blue'
                   : 'text-dark-grey-blue/40'
+              } ${
+                disabledQuestion[4] ? 'pointer-events-none' : ''
               } font-mobile-nav group flex cursor-pointer items-center gap-6 border-b border-grey/25 pb-6 hover:text-dark-grey-blue/60`}
+              onClick={(e) => handleClick(e)}
             >
               <div
                 className={`${
