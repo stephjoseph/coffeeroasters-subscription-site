@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { CoffeeContext } from '../../../context/CoffeeContext';
 import { ModalContext } from '../../../context/ModalContext';
 
@@ -138,6 +138,28 @@ const Order = () => {
     },
   ];
 
+  const questionsRef = plan.map((item) => useRef(null));
+  const orderSummaryRef = useRef(null);
+
+  const scrollToQuestion = (current) => {
+    switch (current) {
+      case 'Bean Type':
+        questionsRef[1].current.scrollIntoView({ behavior: 'smooth' });
+        break;
+      case 'Quantity':
+        questionsRef[2].current.scrollIntoView({ behavior: 'smooth' });
+        break;
+      case 'Grind Option':
+        questionsRef[3].current.scrollIntoView({ behavior: 'smooth' });
+        break;
+      case 'Deliveries':
+        questionsRef[4].current.scrollIntoView({ behavior: 'smooth' });
+        break;
+      default:
+        null;
+    }
+  };
+
   const orderSummary = {
     preferences: state.preferences ? state.preferences : '_____',
     bean: state.bean ? state.bean : '_____',
@@ -257,6 +279,14 @@ const Order = () => {
     }
   }
 
+  function scrollToSummary() {
+    console.log(orderComplete);
+    if (orderComplete) {
+      orderSummaryRef.current.scrollIntoView({ behavior: 'smooth' });
+      console.log('scroll ran');
+    }
+  }
+
   function checkCurrent() {
     const valuesLength = Object.values(state).filter(
       (item) => item !== ''
@@ -293,10 +323,6 @@ const Order = () => {
     } else {
       setCurrent('Preferences');
     }
-
-    console.log(state, valuesLength);
-    console.log(current);
-    console.log(disabledQuestion);
   }
 
   function checkIfDisabled(current) {
@@ -330,19 +356,51 @@ const Order = () => {
     }
   }
 
+  function openCurrent() {
+    switch (current) {
+      case 'Bean Type':
+        setIsOpen((prevState) => ({ ...prevState, 1: true }));
+        break;
+      case 'Quantity':
+        setIsOpen((prevState) => ({ ...prevState, 2: true }));
+        break;
+      case 'Grind Option':
+        setIsOpen((prevState) => ({ ...prevState, 3: true }));
+        break;
+      case 'Deliveries':
+        setIsOpen((prevState) => ({ ...prevState, 4: true }));
+        break;
+      default:
+        setIsOpen((prevState) => ({
+          0: true,
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+        }));
+    }
+  }
+
   useEffect(() => {
     checkCurrent();
     checkProperties(state);
+
     pricePerShipment();
   }, [state]);
 
   useEffect(() => {
+    scrollToQuestion(current);
+    openCurrent();
     checkIfDisabled(current);
   }, [current]);
 
   useEffect(() => {
     computePrice();
   }, [orderComplete, state]);
+
+  useEffect(() => {
+    scrollToSummary();
+  }, [orderComplete]);
 
   return (
     <>
@@ -446,9 +504,10 @@ const Order = () => {
               return (
                 <div
                   key={id}
+                  ref={questionsRef[i]}
                   className={`${
                     disabledQuestion[i] ? 'pointer-events-none opacity-50' : ''
-                  } flex w-full flex-col items-center`}
+                  } flex w-full scroll-mt-[8rem] flex-col items-center md:scroll-mt-10`}
                 >
                   <div
                     className={`${
@@ -480,7 +539,9 @@ const Order = () => {
                   </div>
                   <div
                     className={`${
-                      !isOpen[i] || (state.preferences === 'Capsule' && i === 3)
+                      !isOpen[i] ||
+                      (state.preferences === 'Capsule' && i === 3) ||
+                      disabledQuestion[i]
                         ? 'options'
                         : 'options options-show'
                     }`}
@@ -489,11 +550,7 @@ const Order = () => {
                       return (
                         <div
                           key={option.name}
-                          className={`${
-                            !isOpen[i] || disabledQuestion[i]
-                              ? 'hidden'
-                              : 'flex'
-                          } ${
+                          className={`${!isOpen[i] ? 'hidden' : 'flex'} ${
                             state[title.toLowerCase()] === option.name
                               ? 'option-selected'
                               : 'option-not-selected'
@@ -519,7 +576,10 @@ const Order = () => {
           </div>
         </div>
       </section>
-      <section className='flex w-[87.47%] flex-col items-center gap-[3.5rem] md:w-[89.71%] md:gap-10 xl:w-[77.08%] xl:items-end'>
+      <section
+        ref={orderSummaryRef}
+        className='flex w-[87.47%] scroll-mt-[8rem] flex-col  items-center gap-[3.5rem] md:w-[89.71%] md:scroll-mt-10 md:gap-10 xl:w-[77.08%] xl:items-end'
+      >
         <div className='flex flex-col gap-8 rounded-[10px] bg-[#2C343E] px-6 py-8 md:gap-2 md:py-[1.688rem] md:px-[2.75rem] xl:w-[65.77%] xl:py-12 xl:px-16'>
           <h2 className='font-body uppercase text-white/[0.5037]'>
             Order Summary
