@@ -25,11 +25,11 @@ const steps = [
 
 const Steps = () => {
   return (
-    <section className='flex w-full flex-col items-center gap-20 rounded-[10px] bg-[#2C343E] px-6 py-20 text-center md:items-start md:gap-12 md:px-10 md:pb-[4.375rem] md:pt-[6.063rem] md:text-left'>
+    <section className='flex w-full flex-col items-center gap-20 rounded-[10px] bg-[#2C343E] px-6 py-20 text-center md:items-start md:gap-12 md:px-10 md:pb-[4.375rem] md:pt-[6.063rem] md:text-left xl:w-[88.89%] xl:gap-[4.188rem] xl:py-[6.25rem] xl:pr-[9.375rem] xl:pl-[5.313rem]'>
       <h2 className='font-h2 invisible absolute text-2xl text-grey'>
         How it works
       </h2>
-      <div className='relative mb-12 hidden w-[72.13%] items-center justify-between md:flex'>
+      <div className='relative hidden w-[72.13%] items-center justify-between md:flex xl:w-[75.69%]'>
         <div className='absolute h-[0.125rem] w-full bg-pale-orange'></div>
         <Image
           width={31}
@@ -50,7 +50,7 @@ const Steps = () => {
           alt=''
         />
       </div>
-      <div className='flex flex-col items-center gap-[3.5rem] md:flex-row md:items-start md:gap-[0.625rem]'>
+      <div className='flex flex-col items-center gap-[3.5rem] md:flex-row md:items-start md:gap-[0.625rem] xl:gap-[5.938rem]'>
         {steps.map((step) => {
           return (
             <Step

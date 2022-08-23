@@ -3,7 +3,7 @@ import Steps from './main/Steps';
 
 const Main = () => {
   return (
-    <main className='flex flex-col items-center w-full gap-[7.5rem] mb-[7.5rem]'>
+    <main className='mb-[7.5rem] flex w-full flex-col items-center gap-[7.5rem] xl:mb-[10.5rem] xl:gap-[10.5rem]'>
       <Steps />
       <Order />
     </main>
