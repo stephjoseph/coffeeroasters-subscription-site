@@ -7,17 +7,18 @@ import Header from '../components/plan/Header';
 import Main from '../components/plan/Main';
 
 const Create = () => {
-  const [isModalOpen, setIsModalOpen] = useContext(ModalContext);
-
   return (
     <>
       <Head>
         <title>Coffeeroasters | Plan</title>
       </Head>
-      <div id='plan' className='flex flex-col items-center w-full relative'>
+      <div
+        id='plan'
+        className='relative flex w-full max-w-[1920px] flex-col items-center'
+      >
         <Header />
         <Main />
-        {isModalOpen && <Modal />}
+        <Modal />
       </div>
     </>
   );

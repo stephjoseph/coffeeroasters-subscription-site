@@ -46,11 +46,13 @@ const Modal = () => {
 
   return (
     <div
-      className='fixed top-0 z-50 flex h-screen w-full flex-col items-center bg-black/50'
+      className={`${
+        isModalOpen ? '' : 'pointer-events-none opacity-0'
+      } fixed top-0 z-50 flex h-screen w-full max-w-[1920px] flex-col items-center overflow-scroll bg-black/50 transition-opacity duration-300 ease-in`}
       onClick={() => setIsModalOpen(false)}
     >
       <div
-        className='mt-9 flex w-[87.2%] flex-col items-center rounded-lg bg-white md:mt-[13.375rem] md:w-[70.31%]'
+        className='mt-9 flex w-[87.2%] flex-col items-center rounded-lg bg-white md:mt-[13.375rem] md:w-[70.31%] xl:mt-[3.125rem] xl:w-[37.5%]'
         onClick={(e) => e.stopPropagation()}
       >
         <div className='w-full rounded-t-lg bg-dark-grey-blue px-6 py-[1.75rem] md:px-14 md:py-12'>

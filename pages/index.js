@@ -8,7 +8,10 @@ const Home = () => {
       <Head>
         <title>Coffeeroasters | Home</title>
       </Head>
-      <div id='home' className='flex flex-col items-center w-full'>
+      <div
+        id='home'
+        className='flex w-full max-w-[1920px] flex-col items-center'
+      >
         <Header />
         <Main />
       </div>

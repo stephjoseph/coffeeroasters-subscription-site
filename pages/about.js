@@ -8,7 +8,10 @@ const About = () => {
       <Head>
         <title>Coffeeroasters | About Us</title>
       </Head>
-      <div id='about' className='flex flex-col items-center w-full'>
+      <div
+        id='about'
+        className='flex w-full max-w-[1920px] flex-col items-center'
+      >
         <Header />
         <Main />
       </div>
