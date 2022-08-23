@@ -4,6 +4,7 @@ import { CoffeeContext } from '../../../context/CoffeeContext';
 import { ModalContext } from '../../../context/ModalContext';
 
 const Order = () => {
+  /* ---CONTEXTS--- */
   const [
     state,
     setState,
@@ -18,6 +19,7 @@ const Order = () => {
   const [isModalOpen, setIsModalOpen, price, setPrice] =
     useContext(ModalContext);
 
+  /* ---STATES--- */
   const [pricing, setPricing] = useState({
     perWeek: 0,
     per2Weeks: 0,
@@ -26,6 +28,7 @@ const Order = () => {
 
   const [current, setCurrent] = useState('Preferences');
 
+  /* ---VARIABLES--- */
   const plan = [
     {
       id: 0,
@@ -130,11 +133,20 @@ const Order = () => {
     },
   ];
 
+  const orderSummary = {
+    preferences: state.preferences ? state.preferences : '_____',
+    bean: state.bean ? state.bean : '_____',
+    quantity: state.quantity ? state.quantity : '_____',
+    grind: state.grind ? state.grind : '_____',
+    deliveries: state.deliveries ? state.deliveries : '_____',
+  };
+
+  /* ---REFS--- */
   const questionsRef = plan.map((item) => useRef(null));
   const orderSummaryRef = useRef(null);
 
+  /* ---HELPER FUNCTIONS--- */
   const scrollToQuestion = (current) => {
-    console.log(current);
     switch (current) {
       case 'Bean Type':
         questionsRef[1].current.scrollIntoView({ behavior: 'smooth' });
@@ -153,19 +165,11 @@ const Order = () => {
     }
   };
 
-  const orderSummary = {
-    preferences: state.preferences ? state.preferences : '_____',
-    bean: state.bean ? state.bean : '_____',
-    quantity: state.quantity ? state.quantity : '_____',
-    grind: state.grind ? state.grind : '_____',
-    deliveries: state.deliveries ? state.deliveries : '_____',
-  };
-
   const toggleOpen = (i) => {
     setIsOpen({ ...isOpen, [i]: !isOpen[i] });
   };
 
-  function pricePerShipment() {
+  const pricePerShipment = () => {
     switch (state.quantity) {
       case '250g':
         setPricing({
@@ -195,9 +199,9 @@ const Order = () => {
           perMonth: 0,
         });
     }
-  }
+  };
 
-  function checkProperties(_obj) {
+  const checkProperties = (_obj) => {
     const allChecked =
       state.preferences !== 'Capsule' &&
       Object.values(state).filter((item) => item !== '').length === 5;
@@ -212,9 +216,9 @@ const Order = () => {
     } else {
       setOrderComplete(false);
     }
-  }
+  };
 
-  function computePrice() {
+  const computePrice = () => {
     if (
       orderComplete &&
       state.quantity === '250g' &&
@@ -270,15 +274,15 @@ const Order = () => {
     ) {
       setPrice(42.0);
     }
-  }
+  };
 
-  function scrollToSummary() {
+  const scrollToSummary = () => {
     if (orderComplete) {
       orderSummaryRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }
+  };
 
-  function checkCurrent() {
+  const checkCurrent = () => {
     const valuesLength = Object.values(state).filter(
       (item) => item !== ''
     ).length;
@@ -314,9 +318,9 @@ const Order = () => {
     } else {
       setCurrent('Preferences');
     }
-  }
+  };
 
-  function checkIfDisabled(current) {
+  const checkIfDisabled = (current) => {
     switch (current) {
       case 'Bean Type':
         setDisabledQuestion((prevState) => ({ ...prevState, 1: false }));
@@ -367,9 +371,9 @@ const Order = () => {
         4: false,
       });
     }
-  }
+  };
 
-  function openCurrent() {
+  const openCurrent = () => {
     switch (current) {
       case 'Bean Type':
         setIsOpen((prevState) => ({ ...prevState, 1: true }));
@@ -408,9 +412,9 @@ const Order = () => {
         4: true,
       });
     }
-  }
+  };
 
-  function handleClick(e) {
+  const handleClick = (e) => {
     if (e.target.innerHTML.includes('Preferences')) {
       questionsRef[0].current.scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.innerHTML.includes('Bean Type')) {
@@ -424,8 +428,9 @@ const Order = () => {
     } else {
       null;
     }
-  }
+  };
 
+  /* ---USE EFFECTS--- */
   useEffect(() => {
     checkCurrent();
     checkProperties(state);
