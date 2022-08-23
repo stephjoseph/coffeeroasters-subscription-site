@@ -104,10 +104,16 @@
     }
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1280px) {
     #home header {
       background: url('/assets/home/desktop/image-hero-coffeepress.jpg')
         no-repeat bottom center;
+      background-size: cover;
+    }
+
+    #about header {
+      background: url('/assets/about/desktop/image-hero-whitecup.jpg') no-repeat
+        top center;
       background-size: cover;
     }
   }
