@@ -142,23 +142,24 @@ const Order = () => {
   };
 
   /* ---REFS--- */
-  const questionsRef = plan.map((item) => useRef(null));
+  // const questionsRef = plan.map((item) => useRef(null));
+  const questionsRef = useRef([]);
   const orderSummaryRef = useRef(null);
 
   /* ---HELPER FUNCTIONS--- */
   const scrollToQuestion = (current) => {
     switch (current) {
       case 'Bean Type':
-        questionsRef[1].current.scrollIntoView({ behavior: 'smooth' });
+        questionsRef.current[1].scrollIntoView({ behavior: 'smooth' });
         break;
       case 'Quantity':
-        questionsRef[2].current.scrollIntoView({ behavior: 'smooth' });
+        questionsRef.current[2].scrollIntoView({ behavior: 'smooth' });
         break;
       case 'Grind Option':
-        questionsRef[3].current.scrollIntoView({ behavior: 'smooth' });
+        questionsRef.current[3].scrollIntoView({ behavior: 'smooth' });
         break;
       case 'Deliveries':
-        questionsRef[4].current.scrollIntoView({ behavior: 'smooth' });
+        questionsRef.current[4].scrollIntoView({ behavior: 'smooth' });
         break;
       default:
         null;
@@ -416,21 +417,22 @@ const Order = () => {
 
   const handleClick = (e) => {
     if (e.target.innerHTML.includes('Preferences')) {
-      questionsRef[0].current.scrollIntoView({ behavior: 'smooth' });
+      questionsRef.current[0].scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.innerHTML.includes('Bean Type')) {
-      questionsRef[1].current.scrollIntoView({ behavior: 'smooth' });
+      questionsRef.current[1].scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.innerHTML.includes('Quantity')) {
-      questionsRef[2].current.scrollIntoView({ behavior: 'smooth' });
+      questionsRef.current[2].scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.innerHTML.includes('Grind Option')) {
-      questionsRef[3].current.scrollIntoView({ behavior: 'smooth' });
+      questionsRef.current[3].scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.innerHTML.includes('Deliveries')) {
-      questionsRef[4].current.scrollIntoView({ behavior: 'smooth' });
+      questionsRef.current[4].scrollIntoView({ behavior: 'smooth' });
     } else {
       null;
     }
   };
 
   /* ---USE EFFECTS--- */
+
   useEffect(() => {
     checkCurrent();
     checkProperties(state);
@@ -566,7 +568,9 @@ const Order = () => {
               return (
                 <div
                   key={id}
-                  ref={questionsRef[i]}
+                  ref={(element) => {
+                    questionsRef.current[i] = element;
+                  }}
                   className={`${
                     disabledQuestion[i] ? 'pointer-events-none opacity-50' : ''
                   } flex w-full scroll-mt-[8rem] flex-col items-center md:scroll-mt-10`}
