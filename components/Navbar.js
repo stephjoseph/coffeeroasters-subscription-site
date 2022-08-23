@@ -16,13 +16,19 @@ const Navbar = () => {
       </Link>
       <div className='font-nav flex items-center justify-center gap-8 uppercase text-grey'>
         <Link href='/'>
-          <a>Home</a>
+          <a className='hover:text-dark-grey-blue active:text-dark-grey-blue'>
+            Home
+          </a>
         </Link>
         <Link href='/about'>
-          <a>About Us</a>
+          <a className='hover:text-dark-grey-blue active:text-dark-grey-blue'>
+            About Us
+          </a>
         </Link>
         <Link href='/plan'>
-          <a>Create Your Plan</a>
+          <a className='hover:text-dark-grey-blue active:text-dark-grey-blue'>
+            Create Your Plan
+          </a>
         </Link>
       </div>
     </nav>
