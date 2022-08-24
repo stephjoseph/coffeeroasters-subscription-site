@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const Location = ({
   country,
@@ -10,9 +11,16 @@ const Location = ({
   image,
   imgWidth,
   imgHeight,
+  index,
 }) => {
   return (
-    <div className='flex flex-col gap-12 text-center md:w-[32.36%] md:items-start md:text-left xl:w-[27.27%] xl:gap-[2.625rem]'>
+    <motion.div
+      className='flex flex-col gap-12 text-center md:w-[32.36%] md:items-start md:text-left xl:w-[27.27%] xl:gap-[2.625rem]'
+      initial={{ opacity: 0, translateY: 50 }}
+      whileInView={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 0.5, ease: 'easeIn', delay: index * 0.5 }}
+      viewport={{ once: true }}
+    >
       <div>
         <Image
           width={imgWidth}
@@ -32,7 +40,7 @@ const Location = ({
           <br /> {phone}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

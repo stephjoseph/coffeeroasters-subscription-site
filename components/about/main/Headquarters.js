@@ -1,4 +1,5 @@
 import Location from './Location';
+import { motion } from 'framer-motion';
 
 const locations = [
   {
@@ -39,10 +40,18 @@ const locations = [
 const Headquarters = () => {
   return (
     <section className='flex w-[87.2%] flex-col items-center gap-[4.5rem] md:w-[89.71%] md:items-start xl:w-[72.57%]'>
-      <h2 className='font-h2 text-2xl text-grey'>Our headquarters</h2>
+      <motion.h2
+        className='font-h2 text-2xl text-grey'
+        initial={{ opacity: 0, translateY: 50 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.5, ease: 'easeIn' }}
+        viewport={{ once: true }}
+      >
+        Our headquarters
+      </motion.h2>
       <div className='flex w-full flex-col items-center gap-20 md:flex-row md:items-start md:gap-[0.625rem] xl:gap-[5.938rem]'>
-        {locations.map((location) => {
-          return <Location key={location.country} {...location} />;
+        {locations.map((location, i) => {
+          return <Location key={location.country} {...location} index={i} />;
         })}
       </div>
     </section>

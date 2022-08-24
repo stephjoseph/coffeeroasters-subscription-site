@@ -1,4 +1,5 @@
 import Feature from './Feature';
+import { motion } from 'framer-motion';
 
 const features = [
   {
@@ -34,18 +35,29 @@ const WhyChooseUs = () => {
   return (
     <section className='flex w-[87.2%] flex-col items-center text-center md:w-[89.71%] xl:w-[88.89%]'>
       <div className='relative flex flex-col items-center gap-6 overflow-clip rounded-[10px] bg-[#2C343E] px-6 pt-16 pb-[41.313rem] md:px-[4.5rem] md:pb-[23rem] md:pt-14 xl:gap-8 xl:px-[23.125rem] xl:pb-[19.813rem] xl:pt-[6.25rem] '>
-        <h2 className='font-h2 text-[1.75rem] leading-[1.75rem] text-light-cream xl:text-[2.5rem] xl:leading-[3rem]'>
+        <motion.h2
+          className='font-h2 text-[1.75rem] leading-[1.75rem] text-light-cream xl:text-[2.5rem] xl:leading-[3rem]'
+          initial={{ opacity: 0, translateY: 50 }}
+          whileInView={{ opacity: 1, translateY: 0 }}
+          transition={{ duration: 0.4, ease: 'easeIn' }}
+          viewport={{ once: true }}
+        >
           Why choose us?
-        </h2>
-        <p className='font-body xl:font-body text-[0.938rem] leading-[1.563rem] text-light-cream/80'>
+        </motion.h2>
+        <motion.p
+          className='font-body xl:font-body text-[0.938rem] leading-[1.563rem] text-light-cream/80'
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.4, ease: 'easeIn', delay: 0.5 }}
+        >
           A large part of our role is choosing which particular coffees will be
           featured in our range. This means working closely with the best coffee
           growers to give you a more impactful experience on every level.
-        </p>
+        </motion.p>
         <div className='whychoose-bg absolute top-[269px] h-[40.688rem] w-full opacity-[0.15] md:hidden'></div>
       </div>
       <div className='z-10 -mt-[37.313rem] flex w-full flex-col items-center gap-6 md:-mt-[18.625rem] xl:w-[86.72%] xl:flex-row xl:items-start xl:gap-[1.875rem]'>
-        {features.map((feature) => {
+        {features.map((feature, i) => {
           return (
             <Feature
               key={feature.name}
@@ -55,6 +67,7 @@ const WhyChooseUs = () => {
               imgHeight={feature.imgHeight}
               alt={feature.alt}
               description={feature.description}
+              index={i}
             />
           );
         })}

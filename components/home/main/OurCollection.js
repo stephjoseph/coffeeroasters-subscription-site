@@ -1,4 +1,5 @@
 import Coffee from './Coffee';
+import { motion } from 'framer-motion';
 
 const coffeeCollection = [
   {
@@ -34,11 +35,18 @@ const coffeeCollection = [
 const OurCollection = () => {
   return (
     <section className='flex w-[87.2%] flex-col items-center gap-[0.813rem] md:w-[89.71%] md:gap-[0] xl:w-[77.08%]'>
-      <h2 className='font-title-alternate xl:font-title-alternate gradient-text text-[2.5rem] leading-[4.5rem] text-grey md:text-[6rem] md:leading-[4.5rem]'>
+      <motion.h2
+        className='font-title-alternate  
+      xl:font-title-alternate gradient-text pt-6 text-[2.5rem] leading-[4.5rem] text-grey md:text-[6rem] md:leading-[4.5rem]'
+        initial={{ opacity: 0, translateY: 50 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.5, ease: 'easeIn' }}
+        viewport={{ once: true }}
+      >
         Our Collection
-      </h2>
+      </motion.h2>
       <div className='flex flex-col items-center gap-12 md:-mt-[2rem] md:gap-8 xl:flex-row xl:items-start xl:gap-[1.875rem]'>
-        {coffeeCollection.map((coffee) => {
+        {coffeeCollection.map((coffee, i) => {
           return (
             <Coffee
               key={coffee.name}
@@ -46,6 +54,7 @@ const OurCollection = () => {
               image={coffee.image}
               description={coffee.description}
               alt={coffee.alt}
+              index={i}
             />
           );
         })}
