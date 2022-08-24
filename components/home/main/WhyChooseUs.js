@@ -37,18 +37,18 @@ const WhyChooseUs = () => {
       <div className='relative flex flex-col items-center gap-6 overflow-clip rounded-[10px] bg-[#2C343E] px-6 pt-16 pb-[41.313rem] md:px-[4.5rem] md:pb-[23rem] md:pt-14 xl:gap-8 xl:px-[23.125rem] xl:pb-[19.813rem] xl:pt-[6.25rem] '>
         <motion.h2
           className='font-h2 text-[1.75rem] leading-[1.75rem] text-light-cream xl:text-[2.5rem] xl:leading-[3rem]'
-          initial={{ opacity: 0, translateY: 50 }}
-          whileInView={{ opacity: 1, translateY: 0 }}
-          transition={{ duration: 0.4, ease: 'easeIn' }}
-          viewport={{ once: true }}
+          // initial={{ opacity: 0, translateY: 50 }}
+          // whileInView={{ opacity: 1, translateY: 0 }}
+          // transition={{ duration: 0.4, ease: 'easeIn' }}
+          // viewport={{ once: true }}
         >
           Why choose us?
         </motion.h2>
         <motion.p
           className='font-body xl:font-body text-[0.938rem] leading-[1.563rem] text-light-cream/80'
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.4, ease: 'easeIn', delay: 0.5 }}
+          // initial={{ opacity: 0 }}
+          // whileInView={{ opacity: 1 }}
+          // transition={{ duration: 0.4, ease: 'easeIn', delay: 0.5 }}
         >
           A large part of our role is choosing which particular coffees will be
           featured in our range. This means working closely with the best coffee

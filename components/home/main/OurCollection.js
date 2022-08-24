@@ -38,10 +38,10 @@ const OurCollection = () => {
       <motion.h2
         className='font-title-alternate  
       xl:font-title-alternate gradient-text pt-6 text-[2.5rem] leading-[4.5rem] text-grey md:text-[6rem] md:leading-[4.5rem]'
-        initial={{ opacity: 0, translateY: 50 }}
-        whileInView={{ opacity: 1, translateY: 0 }}
-        transition={{ duration: 0.5, ease: 'easeIn' }}
-        viewport={{ once: true }}
+        // initial={{ opacity: 0, translateY: 50 }}
+        // whileInView={{ opacity: 1, translateY: 0 }}
+        // transition={{ duration: 0.5, ease: 'easeIn' }}
+        // viewport={{ once: true }}
       >
         Our Collection
       </motion.h2>

@@ -7,17 +7,17 @@ const Header = () => {
       <div className='flex flex-col items-center gap-6 md:w-[69.46%] md:items-start xl:w-[44.41%] xl:gap-8'>
         <motion.h1
           className='font-h1 xl:font-h1 text-[2.5rem] leading-[2.5rem] text-light-cream md:text-[3rem] md:leading-[3rem]'
-          initial={{ opacity: 0, translateY: 50 }}
-          animate={{ opacity: 1, translateY: 0 }}
-          transition={{ duration: 0.4, ease: 'easeIn' }}
+          // initial={{ opacity: 0, translateY: 50 }}
+          // animate={{ opacity: 1, translateY: 0 }}
+          // transition={{ duration: 0.4, ease: 'easeIn' }}
         >
           Great coffee made simple.
         </motion.h1>
         <motion.p
           className='font-body xl:font-body text-[0.938rem] leading-[1.563rem] text-light-cream/80'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, ease: 'easeIn', delay: 0.5 }}
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 0.4, ease: 'easeIn', delay: 0.5 }}
         >
           Start your mornings with the world’s best coffees. Try our expertly
           curated artisan coffees from our best roasters delivered directly to
@@ -27,9 +27,9 @@ const Header = () => {
       <Link href='/plan'>
         <motion.a
           className='btn'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, ease: 'easeIn', delay: 1 }}
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 0.4, ease: 'easeIn', delay: 1 }}
         >
           Create your plan
         </motion.a>
